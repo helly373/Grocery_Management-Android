@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native"; // Add View herer
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -11,6 +11,7 @@ import Notifications from "../components/Notifications";
 import SignInPage from "../components/SignInPage";
 import SignUpPage from "../components/SignUpPage";
 import MainMenuPage from "../components/MainMenuPage";
+import ActivityPage from "../components/ActivityPage";
 
 const Stack = createStackNavigator();
 
@@ -38,22 +39,27 @@ const AppNavigator = () => {
         {/* Options Page */}
         <Stack.Screen name="Options">
           {(props) => (
-            <OptionsPage {...props} groceries={groceries} addProduct={addProduct} />
+            <OptionsPage
+              {...props}
+              groceries={groceries}
+              addProduct={addProduct}
+            />
           )}
         </Stack.Screen>
 
         {/* Grocery List */}
         <Stack.Screen name="GroceryList">
           {(props) => (
-            <GroceryList {...props} groceries={groceries} addProduct={addProduct} />
+            <GroceryList
+              {...props}
+              groceries={groceries}
+              addProduct={addProduct}
+            />
           )}
         </Stack.Screen>
 
         {/* Add Product */}
-        <Stack.Screen
-          name="AddProduct"
-          options={{ title: "Add Product" }}
-        >
+        <Stack.Screen name="AddProduct" options={{ title: "Add Product" }}>
           {(props) => <AddProduct {...props} addProduct={addProduct} />}
         </Stack.Screen>
 
@@ -71,20 +77,37 @@ const AppNavigator = () => {
           name="MainMenu"
           component={MainMenuPage}
           options={({ navigation }) => ({
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Notifications")}
-                style={{ marginRight: 16 }}
-              >
-                <Ionicons
-                  name="notifications-outline"
-                  size={24}
-                  color="black"
-                />
-              </TouchableOpacity>
-            ),
             title: "Main Menu",
+            headerRight: () => (
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {/* Notification Icon */}
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Notifications")}
+                  style={{ marginRight: 16 }}
+                >
+                  <Ionicons
+                    name="notifications-outline"
+                    size={24}
+                    color="black"
+                  />
+                </TouchableOpacity>
+                {/* Activity Icon */}
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Activity")}
+                >
+                  <Ionicons name="list-outline" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+            ),
+            headerLeft: null, // Removes back arrow
           })}
+        />
+        <Stack.Screen
+          name="Activity"
+          component={ActivityPage}
+          options={{
+            title: "Activity",
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

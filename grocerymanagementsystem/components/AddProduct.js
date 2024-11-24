@@ -8,106 +8,100 @@ import {
   Alert,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { GroceryContext} from "../contexts/GroceryProvider";
+import RNPickerSelect from "react-native-picker-select"; // Import dropdown library
+import { GroceryContext } from "../contexts/GroceryProvider";
+import { ActivityContext } from "../contexts/ActivityProvider";
 
-const AddProduct = ({ navigation, route }) => {
+const AddProduct = ({ navigation }) => {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
-  const [expirationDate, setExpirationDate] = useState(""); // New state for expiration date
-  const [showDatePicker, setShowDatePicker] = useState(false); // Control for date picker
+  const [expirationDate, setExpirationDate] = useState("");
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
   const { addProduct } = useContext(GroceryContext);
+  const { addActivity } = useContext(ActivityContext);
 
+  const categories = [
+    { label: "Fruits", value: "Fruits" },
+    { label: "Vegetables", value: "Vegetables" },
+    { label: "Bakery", value: "Bakery" },
+    { label: "Dairy", value: "Dairy" },
+    { label: "Meat", value: "Meat" },
+    { label: "Beverages", value: "Beverages" },
+    { label: "Snacks", value: "Snacks" },
+    { label: "Others", value: "Others" },
+  ];
 
-// Function to handle date change
-const handleDateChange = (event, selectedDate) => {
-  setShowDatePicker(false); // Close the date picker
-  if (selectedDate) {
-    setExpirationDate(selectedDate.toISOString().split("T")[0]); // Format as YYYY-MM-DD
-  }
-};  
-  // Save the product
-const handleSave = () => {
-  // Validate name (alphabets only)
-  const nameRegex = /^[A-Za-z\s]+$/;
-  if (!nameRegex.test(name)) {
-    Alert.alert("Error", "Product name must only contain alphabets.");
-    return;
-  }
-
-   // Validate quantity (decimal number + optional unit)
-   const quantityRegex = /^[0-9]+(\.[0-9]+)?\s?[A-Za-z]*$/;
-   if (!quantityRegex.test(quantity)) {
-     Alert.alert(
-       "Error",
-       "Quantity must be a number with an optional unit (e.g., 5.5 kg, 2 loafs)."
-     );
-     return;
-   }
-    // Validate category (only check for non-empty)
-    if (!category.trim()) {
-      Alert.alert("Error", "Category cannot be empty.");
-      return;
+  const handleDateChange = (event, selectedDate) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      setExpirationDate(selectedDate.toISOString().split("T")[0]);
     }
+  };
 
-    // Validate expiration date
-    if (expirationDate) {
-      const currentDate = new Date();
-      if (new Date(expirationDate) <= currentDate) {
-        Alert.alert("Error", "Expiration date must be in the future.");
-        return;
-      }
-    }
-
-
-    if (!name || !quantity || !category) {
+  const handleSave = () => {
+    if (!name.trim() || !quantity.trim() || !category.trim()) {
       Alert.alert("Error", "All fields are required!");
       return;
     }
 
-    // Create the new product object
     const newProduct = {
       id: Date.now().toString(),
       name,
       quantity,
       category,
-      ...(expirationDate && { expirationDate }), // Add expiration date only if it's not empty
+      ...(expirationDate && { expirationDate }),
+    };
+
+    addProduct(newProduct);
+    addActivity("Added", `Added ${name} (${quantity}) to ${category}`);
+    setName("");
+    setQuantity("");
+    setCategory("");
+    setExpirationDate("");
+    navigation.goBack();
   };
-
-   addProduct(newProduct);
-
-  // Clear the input fields
-  setName("");
-  setQuantity("");
-  setCategory("");
-  setExpirationDate("");
-
-  // Navigate back to the Grocery List
-  navigation.goBack();
-};
-
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Add Product</Text>
+
+      {/* Product Name Input */}
       <TextInput
         style={styles.input}
         placeholder="Enter product name"
         value={name}
         onChangeText={(text) => setName(text)}
       />
+
+      {/* Quantity Input */}
       <TextInput
         style={styles.input}
         placeholder="Enter quantity (e.g., 5 kg)"
         value={quantity}
         onChangeText={(text) => setQuantity(text)}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Enter category (e.g., Fruits)"
-        value={category}
-        onChangeText={(text) => setCategory(text)}
-      />
+
+      {/* Category Dropdown */}
+      <View style={styles.dropdownContainer}>
+        <RNPickerSelect
+          placeholder={{
+            label: "Select Category",
+            value: null,
+            color: "#9EA0A4",
+          }}
+          onValueChange={(value) => setCategory(value)}
+          items={categories}
+          style={{
+            inputAndroid: styles.dropdownInput,
+            inputIOS: styles.dropdownInput,
+          }}
+          value={category}
+        />
+      </View>
+
+      {/* Expiration Date Picker */}
       <TouchableOpacity
         style={styles.input}
         onPress={() => setShowDatePicker(true)}
@@ -126,6 +120,8 @@ const handleSave = () => {
           onChange={handleDateChange}
         />
       )}
+
+      {/* Save Button */}
       <TouchableOpacity style={styles.button} onPress={handleSave}>
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
@@ -152,6 +148,18 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 8,
     fontSize: 16,
+  },
+  dropdownContainer: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    marginBottom: 16,
+    padding: 4,
+  },
+  dropdownInput: {
+    fontSize: 16,
+    padding: 10,
+    color: "#333",
   },
   button: {
     backgroundColor: "#4caf50",

@@ -1,9 +1,20 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { GroceryContext } from "../contexts/GroceryProvider";
+import { UserContext } from "../contexts/UserContext";
 
 const Notifications = () => {
   const { notifications } = useContext(GroceryContext);
+  const { currentUser } = useContext(UserContext);
+
+  // Ensure notifications are shown only if a user is signed in
+  if (!currentUser) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Please sign in to view notifications.</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
