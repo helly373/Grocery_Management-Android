@@ -14,6 +14,9 @@ import MainMenuPage from "../components/MainMenuPage";
 
 const Stack = createStackNavigator();
 
+// const AppNavigator = () => {
+//   const [currentPage, setCurrentPage] = useState(""); // Track the current page
+
 const AppNavigator = () => {
   // Shared state for groceries
   const [groceries, setGroceries] = useState([
