@@ -7,35 +7,49 @@ import {
   TouchableOpacity,
   Modal,
   Button,
+  TextInput,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { GroceryContext } from "../contexts/GroceryProvider";
 
 const GroceryList = ({ navigation }) => {
-  const { groceries, addProduct, setGroceries } = useContext(GroceryContext);
+  const { groceries, setGroceries, saveGroceriesToStorage } = useContext(GroceryContext);
 
   const navigateToAddProduct = () => {
     navigation.navigate("AddProduct");
   };
 
- 
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [updatedQuantity, setUpdatedQuantity] = useState("");
   const [updatedExpirationDate, setUpdatedExpirationDate] = useState("");
 
+    // Sort groceries by soonest expiration date
+    const sortedGroceries = groceries
+    .slice() 
+    .sort((a, b) => {
+      if (!a.expirationDate) return 1; 
+      if (!b.expirationDate) return -1;
+      return new Date(a.expirationDate) - new Date(b.expirationDate);
+    });
+
+  // Delete a grocery item
   const deleteItem = (id) => {
-    setGroceries((prev) => prev.filter((item) => item.id !== id));
+    const updatedGroceries = groceries.filter((item) => item.id !== id);
+    setGroceries(updatedGroceries);
+    saveGroceriesToStorage(updatedGroceries); // Persist updated list to AsyncStorage
   };
 
+  // Open the modal for editing
   const openEditModal = (item) => {
-    setSelectedItem(item); // Set the selected item for editing
-    setUpdatedQuantity(item.quantity); // Pre-fill quantity
-    setUpdatedExpirationDate(item.expirationDate || ""); // Pre-fill expiration date
-    setModalVisible(true); // Open the modal
+    setSelectedItem(item);
+    setUpdatedQuantity(item.quantity);
+    setUpdatedExpirationDate(item.expirationDate || "");
+    setModalVisible(true);
   };
 
+  // Close the edit modal
   const closeEditModal = () => {
     setModalVisible(false);
     setSelectedItem(null);
@@ -43,19 +57,25 @@ const GroceryList = ({ navigation }) => {
     setUpdatedExpirationDate("");
   };
 
+  // Save changes made in the modal
   const saveChanges = () => {
     if (!updatedQuantity.trim()) {
       alert("Quantity cannot be empty");
       return;
     }
 
-    setGroceries((prev) =>
-      prev.map((item) =>
-        item.id === selectedItem.id
-          ? { ...item, quantity: updatedQuantity, expirationDate: updatedExpirationDate }
-          : item
-      )
+    const updatedGroceries = groceries.map((item) =>
+      item.id === selectedItem.id
+        ? {
+            ...item,
+            quantity: updatedQuantity,
+            expirationDate: updatedExpirationDate,
+          }
+        : item
     );
+
+    setGroceries(updatedGroceries);
+    saveGroceriesToStorage(updatedGroceries); // Persist updated list to AsyncStorage
     closeEditModal();
   };
 
@@ -63,7 +83,7 @@ const GroceryList = ({ navigation }) => {
     const renderLeftActions = () => (
       <TouchableOpacity
         style={styles.editButton}
-        onPress={() => openEditModal(item)} // Open the modal for editing
+        onPress={() => openEditModal(item)}
       >
         <Ionicons name="create-outline" size={20} color="white" />
       </TouchableOpacity>
@@ -110,7 +130,7 @@ const GroceryList = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={groceries}
+        data={sortedGroceries}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={
