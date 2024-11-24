@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons'; // For the bell icon
 const MainMenuPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Main Menu</Text>
+      {/* <Text style={styles.title}>Main Menu</Text> */}
 
       <TouchableOpacity
         style={styles.optionButton}
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   optionButton: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'black',
     padding: 16,
     marginVertical: 10,
     width: '80%',
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
   optionText: {
     fontSize: 18,
     fontWeight: 'bold',
-  },
+    color: 'white',
+  }
 });
 
 export default MainMenuPage;

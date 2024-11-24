@@ -5,28 +5,65 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  Modal,
+  Button,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { GroceryContext } from "../contexts/GroceryProvider";
 
 const GroceryList = ({ navigation }) => {
-  const { groceries, addProduct } = useContext(GroceryContext);
+  const { groceries, addProduct, setGroceries } = useContext(GroceryContext);
+
+  const navigateToAddProduct = () => {
+    navigation.navigate("AddProduct");
+  };
+
+ 
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [updatedQuantity, setUpdatedQuantity] = useState("");
+  const [updatedExpirationDate, setUpdatedExpirationDate] = useState("");
 
   const deleteItem = (id) => {
     setGroceries((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const openEditModal = (item) => {
+    setSelectedItem(item); // Set the selected item for editing
+    setUpdatedQuantity(item.quantity); // Pre-fill quantity
+    setUpdatedExpirationDate(item.expirationDate || ""); // Pre-fill expiration date
+    setModalVisible(true); // Open the modal
+  };
 
-  const navigateToAddProduct = () => {
-    navigation.navigate("AddProduct");
+  const closeEditModal = () => {
+    setModalVisible(false);
+    setSelectedItem(null);
+    setUpdatedQuantity("");
+    setUpdatedExpirationDate("");
+  };
+
+  const saveChanges = () => {
+    if (!updatedQuantity.trim()) {
+      alert("Quantity cannot be empty");
+      return;
+    }
+
+    setGroceries((prev) =>
+      prev.map((item) =>
+        item.id === selectedItem.id
+          ? { ...item, quantity: updatedQuantity, expirationDate: updatedExpirationDate }
+          : item
+      )
+    );
+    closeEditModal();
   };
 
   const renderItem = ({ item }) => {
     const renderLeftActions = () => (
       <TouchableOpacity
         style={styles.editButton}
-        onPress={() => alert("Edit Item")}
+        onPress={() => openEditModal(item)} // Open the modal for editing
       >
         <Ionicons name="create-outline" size={20} color="white" />
       </TouchableOpacity>
@@ -56,6 +93,13 @@ const GroceryList = ({ navigation }) => {
           <View style={styles.textContainer}>
             <Text style={styles.itemName}>{item.name}</Text>
             <Text style={styles.itemCategory}>{item.category}</Text>
+            {item.expirationDate ? (
+              <Text style={styles.itemExpiration}>
+                Exp: {item.expirationDate}
+              </Text>
+            ) : (
+              <Text style={styles.noExpiration}>No Expiration Date</Text>
+            )}
           </View>
           <Text style={styles.itemQuantity}>{item.quantity}</Text>
         </View>
@@ -73,6 +117,38 @@ const GroceryList = ({ navigation }) => {
           <Text style={styles.emptyText}>No items in the list</Text>
         }
       />
+
+      {/* Modal for Editing */}
+      {selectedItem && (
+        <Modal
+          visible={isModalVisible}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={closeEditModal}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Edit Item</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Quantity (e.g., 5 kg)"
+                value={updatedQuantity}
+                onChangeText={setUpdatedQuantity}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Expiration Date (YYYY-MM-DD)"
+                value={updatedExpirationDate}
+                onChangeText={setUpdatedExpirationDate}
+              />
+              <View style={styles.modalActions}>
+                <Button title="Save" onPress={saveChanges} />
+                <Button title="Cancel" color="red" onPress={closeEditModal} />
+              </View>
+            </View>
+          </View>
+        </Modal>
+      )}
 
       {/* Add Product Button */}
       <TouchableOpacity style={styles.addButton} onPress={navigateToAddProduct}>
@@ -93,7 +169,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 12,
     marginBottom: 8,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#F7F0EF",
     borderRadius: 8,
     borderColor: "#ddd",
     borderWidth: 1,
@@ -116,6 +192,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#333",
     marginLeft: 10,
+  },
+  itemExpiration: {
+    fontSize: 12,
+    color: "#888",
+  },
+  noExpiration: {
+    fontSize: 12,
+    color: "red",
   },
   editButton: {
     backgroundColor: "#4caf50",
@@ -149,6 +233,35 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 10,
+    width: "80%",
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  modalActions: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 

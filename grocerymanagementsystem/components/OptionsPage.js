@@ -6,20 +6,20 @@ const OptionsPage = ({ navigation, addProduct }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Grocery</Text>
       
-      {/* Button to navigate to the Checklist */}
+      {/* Checklist Button */}
       <TouchableOpacity
-        style={styles.optionButton}
+        style={styles.optionButton} // Style for the Checklist button
         onPress={() => navigation.navigate('GroceryList')}
       >
         <Text style={styles.optionText}>Checklist</Text>
       </TouchableOpacity>
 
-      {/* Button to navigate to Add Grocery */}
+      {/* Add Grocery Button */}
       <TouchableOpacity
-        style={styles.optionButton}
-        onPress={() => navigation.navigate('AddProduct', {addProduct})}
+        style={styles.addGroceryButton} // Specific style for Add Grocery button
+        onPress={() => navigation.navigate('AddProduct', { addProduct })}
       >
-        <Text style={styles.optionText}>Add Grocery</Text>
+        <Text style={styles.addGroceryText}>Add Grocery</Text>
       </TouchableOpacity>
     </View>
   );
@@ -38,7 +38,21 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   optionButton: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f5f5f5', // Light gray background for Checklist button
+    padding: 16,
+    marginVertical: 10,
+    width: '80%',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  optionText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  addGroceryButton: {
+    backgroundColor: 'black', // Black background for Add Grocery button
     padding: 16,
     marginVertical: 10,
     width: '80%',
@@ -47,9 +61,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
   },
-  optionText: {
+  addGroceryText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'white', // White text for Add Grocery button
   },
 });
 
