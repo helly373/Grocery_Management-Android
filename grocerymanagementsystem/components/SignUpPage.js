@@ -1,40 +1,36 @@
-import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
-import sha256 from 'js-sha256';
-import { UserContext } from '../contexts/UserContext';
-
-
-
+import React, { useContext, useState } from "react";
+import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import sha256 from "js-sha256";
+import { UserContext } from "../contexts/UserContext";
 
 const SignUpPage = ({ navigation }) => {
-  const[email, setEmail] = useState('');
-  const[password, setPassword] = useState('');
-  const[confirmPassword, setConfirmPassword] = useState('');
-  const{users, setUsers} = useContext(UserContext); //Access context
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { users, setUsers } = useContext(UserContext); //Access context
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleSignUp = () => {
     if (!validateEmail(email)) {
-      Alert.alert('Invalid Email', 'Please enter a valid email address.');
+      Alert.alert("Invalid Email", "Please enter a valid email address.");
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert('Password Mismatch', 'Passwords do not match.');
+      Alert.alert("Password Mismatch", "Passwords do not match.");
       return;
     }
     if (users[email]) {
-      Alert.alert('Email Exists', 'This email is already registered.');
+      Alert.alert("Email Exists", "This email is already registered.");
       return;
     }
     const hashedPassword = sha256(password);
     setUsers({ ...users, [email]: hashedPassword });
-    Alert.alert('Success', 'You have successfully registered!');
-    navigation.navigate('SignIn');
+    Alert.alert("Success", "You have successfully registered!");
+    navigation.navigate("SignIn");
   };
 
-
-   return (
+  return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
       <TextInput
@@ -66,19 +62,19 @@ const SignUpPage = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 16,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   input: {
-    width: '100%',
+    width: "100%",
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     padding: 8,
     marginBottom: 12,
     borderRadius: 8,
