@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons"; // For the icons
 
 const OptionsPage = ({ navigation, addProduct }) => {
   return (
@@ -11,6 +12,12 @@ const OptionsPage = ({ navigation, addProduct }) => {
         style={styles.optionButton} // Style for the Checklist button
         onPress={() => navigation.navigate("GroceryList")}
       >
+        <Ionicons
+          name="list-outline"
+          size={24}
+          color="white"
+          style={styles.icon}
+        />
         <Text style={styles.optionText}>Checklist</Text>
       </TouchableOpacity>
 
@@ -19,6 +26,12 @@ const OptionsPage = ({ navigation, addProduct }) => {
         style={styles.addGroceryButton} // Specific style for Add Grocery button
         onPress={() => navigation.navigate("AddProduct", { addProduct })}
       >
+        <Ionicons
+          name="add-circle-outline"
+          size={24}
+          color="white"
+          style={styles.icon}
+        />
         <Text style={styles.addGroceryText}>Add Grocery</Text>
       </TouchableOpacity>
     </View>
@@ -31,40 +44,52 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
+    backgroundColor: "#C2B280", // Faded brown background for consistency
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 30,
+    color: "#333", // Dark color for title
   },
   optionButton: {
-    backgroundColor: "#f5f5f5", // Light gray background for Checklist button
+    backgroundColor: "black", // Black background for Checklist button
     padding: 16,
     marginVertical: 10,
     width: "80%",
     alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#ccc", // Subtle border color
+    flexDirection: "row",
+    justifyContent: "center",
   },
   optionText: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "white", // White text for the Checklist button
+    marginLeft: 8, // Space between icon and text
+  },
+  icon: {
+    marginRight: 8, // Space between icon and text
   },
   addGroceryButton: {
-    backgroundColor: "black", // Black background for Add Grocery button
+    backgroundColor: "#32CD32", // Green background for Add Grocery button
     padding: 16,
     marginVertical: 10,
     width: "80%",
     alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#ccc", // Subtle border color
+    flexDirection: "row",
+    justifyContent: "center",
   },
   addGroceryText: {
     fontSize: 18,
     fontWeight: "bold",
     color: "white", // White text for Add Grocery button
+    marginLeft: 8, // Space between icon and text
   },
 });
 

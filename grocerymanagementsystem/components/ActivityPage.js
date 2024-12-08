@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#C2B280", // Faded brown background
   },
   filterContainer: {
     flexDirection: "row",
@@ -85,13 +85,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   activeFilter: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4caf50", // Green background for active filter
   },
   filterText: {
-    color: "#333",
+    color: "#333", // Dark text color for filter options
   },
   activeFilterText: {
-    color: "#fff",
+    color: "#fff", // White text for active filter
     fontWeight: "bold",
   },
   activityItem: {
@@ -100,25 +100,26 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 8,
     marginBottom: 10,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#F7F0EF", // Light background for activity item
   },
   activityType: {
     fontSize: 16,
     fontWeight: "bold",
+    color: "#333", // Dark text for activity type
   },
   activityDetails: {
     fontSize: 14,
-    color: "#666",
+    color: "#666", // Lighter gray for activity details
     marginVertical: 4,
   },
   activityTimestamp: {
     fontSize: 12,
-    color: "#888",
+    color: "#888", // Lighter gray for timestamp
   },
   emptyText: {
     textAlign: "center",
     fontSize: 16,
-    color: "#999",
+    color: "#999", // Lighter gray for "No activities" text
   },
 });
 

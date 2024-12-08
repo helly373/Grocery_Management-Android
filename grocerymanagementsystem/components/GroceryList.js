@@ -9,7 +9,7 @@ import {
   Button,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import { Swipeable } from "react-native-gesture-handler";
 import { GroceryContext } from "../contexts/GroceryProvider";
 import { ActivityContext } from "../contexts/ActivityProvider";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -80,7 +80,7 @@ const GroceryList = ({ navigation }) => {
     setGroceries(updatedGroceries);
     saveGroceriesToStorage(updatedGroceries);
 
-    // Log a single activity for all changes
+    // Log activity for changes
     const changes = [];
     if (
       updatedQuantity !== parseInt(selectedItem.quantity.replace(/[^0-9]/g, ""))
@@ -240,14 +240,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#C2B280", // Faded brown background
   },
   itemContainer: {
     flexDirection: "row",
     alignItems: "center",
     padding: 12,
     marginBottom: 8,
-    backgroundColor: "#F7F0EF",
+    backgroundColor: "#F7F0EF", // Light background for items
     borderRadius: 8,
     borderColor: "#ddd",
     borderWidth: 1,
@@ -258,43 +258,43 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#333",
+    color: "#333", // Dark text for item name
   },
   itemCategory: {
     fontSize: 12,
-    color: "#888",
+    color: "#888", // Lighter color for category
     marginTop: 2,
   },
   itemQuantity: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#333",
+    color: "#333", // Dark text for quantity
     marginLeft: 10,
   },
   itemExpiration: {
     fontSize: 12,
-    color: "#888",
+    color: "#888", // Lighter text for expiration date
   },
   noExpiration: {
     fontSize: 12,
-    color: "red",
+    color: "red", // Red text for "No expiration"
   },
   editButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4caf50", // Green button for edit
     justifyContent: "center",
     alignItems: "center",
     width: 75,
     height: "100%",
   },
   deleteButton: {
-    backgroundColor: "#f44336",
+    backgroundColor: "#f44336", // Red button for delete
     justifyContent: "center",
     alignItems: "center",
     width: 75,
     height: "100%",
   },
   actionText: {
-    color: "white",
+    color: "white", // White text for action buttons
     fontSize: 12,
     fontWeight: "bold",
   },
@@ -302,10 +302,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     fontSize: 18,
-    color: "#999",
+    color: "#999", // Lighter gray for empty text
   },
   addButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4caf50", // Green button for adding product
     padding: 16,
     borderRadius: 8,
     alignItems: "center",
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   addButtonText: {
-    color: "#fff",
+    color: "#fff", // White text for add button
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -321,13 +321,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(0,0,0,0.5)", // Dark background for modal
   },
   modalContent: {
     backgroundColor: "#fff",
     padding: 20,
     borderRadius: 10,
-    width: "80%",
+    width: "80%", // Set width for modal content
   },
   modalTitle: {
     fontSize: 18,

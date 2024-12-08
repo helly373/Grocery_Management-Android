@@ -133,13 +133,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#C2B280", // Faded brown background
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
+    color: "#333", // Dark text for the title
   },
   input: {
     borderWidth: 1,
@@ -148,6 +149,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 8,
     fontSize: 16,
+    backgroundColor: "#fff", // White background for inputs
   },
   dropdownContainer: {
     borderWidth: 1,
@@ -155,21 +157,22 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
     padding: 4,
+    backgroundColor: "#fff", // White background for dropdown container
   },
   dropdownInput: {
     fontSize: 16,
     padding: 10,
-    color: "#333",
+    color: "#333", // Dark text for dropdown
   },
   button: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4caf50", // Green background for save button
     padding: 16,
     borderRadius: 8,
     alignItems: "center",
     marginTop: 10,
   },
   buttonText: {
-    color: "#fff",
+    color: "#fff", // White text for save button
     fontSize: 16,
     fontWeight: "bold",
   },

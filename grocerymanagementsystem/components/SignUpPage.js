@@ -7,7 +7,7 @@ const SignUpPage = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { users, setUsers } = useContext(UserContext); //Access context
+  const { users, setUsers } = useContext(UserContext); // Access context
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -54,7 +54,10 @@ const SignUpPage = ({ navigation }) => {
         value={confirmPassword}
         onChangeText={setConfirmPassword}
       />
-      <Button title="Sign Up" onPress={handleSignUp} />
+      <View style={styles.buttonContainer}>
+        <Button title="Sign Up" onPress={handleSignUp} color="#32CD32" />
+        {/* Green button */}
+      </View>
     </View>
   );
 };
@@ -65,11 +68,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
+    backgroundColor: "#C2B280", // Faded brown background
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+    color: "#333", // Dark color for the title
   },
   input: {
     width: "100%",
@@ -78,6 +83,11 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 12,
     borderRadius: 8,
+    backgroundColor: "#fff", // White background for inputs
+  },
+  buttonContainer: {
+    width: "60%", // Adjust width of the button container
+    marginVertical: 20, // Add some space between the button and text below
   },
 });
 

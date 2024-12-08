@@ -1,9 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 const WelcomePage = ({ navigation }) => {
+  //const imageUri = "./assets/pet.png";
+
   return (
     <View style={styles.container}>
+      {/* Image of worm or cabbage */}
+      <Image source={require("../assets/pet.png")} style={styles.image} />
+
       <Text style={styles.text}>Welcome</Text>
       <TouchableOpacity
         style={styles.button}
@@ -26,6 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#C2B280",
   },
   text: {
     fontSize: 20,
@@ -33,7 +39,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: "black",
+    backgroundColor: "#32CD32",
     padding: 12,
     borderRadius: 8,
     marginVertical: 8,
@@ -44,6 +50,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  image: {
+    width: 200, 
+    height: 200, 
+    marginBottom: 30, 
   },
 });
 

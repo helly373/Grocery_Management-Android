@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   notificationItem: {
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#87CEEB", // Blue background for notification bubble
     padding: 12,
     marginBottom: 8,
     borderRadius: 8,
@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
   notificationText: {
     fontSize: 16,
     color: "#333",
+  },
+  boldText: {
+    fontWeight: "bold", // Bold style for specific part of the text
   },
   text: {
     fontSize: 20,
