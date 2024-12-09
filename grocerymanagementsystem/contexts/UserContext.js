@@ -5,9 +5,7 @@ export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [users, setUsers] = useState({});
-  const [currentUser, setCurrentUser] = useState(null); // Track signed-in user
-
-  // Save users to AsyncStorage
+  const [currentUser, setCurrentUser] = useState(null); 
   const saveUsersToStorage = async (users) => {
     try {
       await AsyncStorage.setItem("users", JSON.stringify(users));
@@ -16,7 +14,6 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  // Load users from AsyncStorage
   const loadUsersFromStorage = async () => {
     try {
       const storedUsers = await AsyncStorage.getItem("users");

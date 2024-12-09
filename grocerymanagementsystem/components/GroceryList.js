@@ -240,14 +240,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#C2B280", // Faded brown background
+    backgroundColor: "#C2B280",
   },
   itemContainer: {
     flexDirection: "row",
     alignItems: "center",
     padding: 12,
     marginBottom: 8,
-    backgroundColor: "#F7F0EF", // Light background for items
+    backgroundColor: "#F7F0EF",
     borderRadius: 8,
     borderColor: "#ddd",
     borderWidth: 1,
@@ -258,43 +258,43 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#333", // Dark text for item name
+    color: "#333",
   },
   itemCategory: {
     fontSize: 12,
-    color: "#888", // Lighter color for category
+    color: "#888",
     marginTop: 2,
   },
   itemQuantity: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#333", // Dark text for quantity
+    color: "#333",
     marginLeft: 10,
   },
   itemExpiration: {
     fontSize: 12,
-    color: "#888", // Lighter text for expiration date
+    color: "#888",
   },
   noExpiration: {
     fontSize: 12,
-    color: "red", // Red text for "No expiration"
+    color: "red",
   },
   editButton: {
-    backgroundColor: "#4caf50", // Green button for edit
+    backgroundColor: "#4caf50",
     justifyContent: "center",
     alignItems: "center",
     width: 75,
     height: "100%",
   },
   deleteButton: {
-    backgroundColor: "#f44336", // Red button for delete
+    backgroundColor: "#f44336",
     justifyContent: "center",
     alignItems: "center",
     width: 75,
     height: "100%",
   },
   actionText: {
-    color: "white", // White text for action buttons
+    color: "white",
     fontSize: 12,
     fontWeight: "bold",
   },
@@ -302,10 +302,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     fontSize: 18,
-    color: "#999", // Lighter gray for empty text
+    color: "#999",
   },
   addButton: {
-    backgroundColor: "#4caf50", // Green button for adding product
+    backgroundColor: "#4caf50",
     padding: 16,
     borderRadius: 8,
     alignItems: "center",
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   addButtonText: {
-    color: "#fff", // White text for add button
+    color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -321,13 +321,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)", // Dark background for modal
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
   modalContent: {
     backgroundColor: "#fff",
     padding: 20,
     borderRadius: 10,
-    width: "80%", // Set width for modal content
+    width: "80%",
   },
   modalTitle: {
     fontSize: 18,

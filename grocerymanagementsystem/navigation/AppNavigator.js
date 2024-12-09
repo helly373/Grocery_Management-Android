@@ -58,21 +58,16 @@ const AppNavigator = () => {
           )}
         </Stack.Screen>
 
-        {/* Add Product */}
         <Stack.Screen name="AddProduct" options={{ title: "Add Product" }}>
           {(props) => <AddProduct {...props} addProduct={addProduct} />}
         </Stack.Screen>
 
-        {/* Notifications */}
         <Stack.Screen name="Notifications" component={Notifications} />
 
-        {/* Sign-In Page */}
         <Stack.Screen name="SignIn" component={SignInPage} />
 
-        {/* Sign-Up Page */}
         <Stack.Screen name="SignUp" component={SignUpPage} />
 
-        {/* Main Menu */}
         <Stack.Screen
           name="MainMenu"
           component={MainMenuPage}
@@ -80,7 +75,6 @@ const AppNavigator = () => {
             title: "Main Menu",
             headerRight: () => (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                {/* Notification Icon */}
                 <TouchableOpacity
                   onPress={() => navigation.navigate("Notifications")}
                   style={{ marginRight: 16 }}
@@ -91,7 +85,6 @@ const AppNavigator = () => {
                     color="black"
                   />
                 </TouchableOpacity>
-                {/* Activity Icon */}
                 <TouchableOpacity
                   onPress={() => navigation.navigate("Activity")}
                 >
@@ -99,7 +92,7 @@ const AppNavigator = () => {
                 </TouchableOpacity>
               </View>
             ),
-            headerLeft: null, // Removes back arrow
+            headerLeft: null, 
           })}
         />
         <Stack.Screen

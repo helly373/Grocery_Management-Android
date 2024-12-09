@@ -8,7 +8,7 @@ import {
   Alert,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import RNPickerSelect from "react-native-picker-select"; // Import dropdown library
+import RNPickerSelect from "react-native-picker-select"; 
 import { GroceryContext } from "../contexts/GroceryProvider";
 import { ActivityContext } from "../contexts/ActivityProvider";
 
@@ -67,7 +67,7 @@ const AddProduct = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Add Product</Text>
 
-      {/* Product Name Input */}
+   
       <TextInput
         style={styles.input}
         placeholder="Enter product name"
@@ -133,14 +133,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#C2B280", // Faded brown background
+    backgroundColor: "#C2B280",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
-    color: "#333", // Dark text for the title
+    color: "#333", 
   },
   input: {
     borderWidth: 1,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 8,
     fontSize: 16,
-    backgroundColor: "#fff", // White background for inputs
+    backgroundColor: "#fff", 
   },
   dropdownContainer: {
     borderWidth: 1,
@@ -157,22 +157,21 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
     padding: 4,
-    backgroundColor: "#fff", // White background for dropdown container
+    backgroundColor: "#fff",
   },
   dropdownInput: {
     fontSize: 16,
     padding: 10,
-    color: "#333", // Dark text for dropdown
+    color: "#333", 
   },
   button: {
-    backgroundColor: "#4caf50", // Green background for save button
-    padding: 16,
+    backgroundColor: "#4caf50", 
     borderRadius: 8,
     alignItems: "center",
     marginTop: 10,
   },
   buttonText: {
-    color: "#fff", // White text for save button
+    color: "#fff", 
     fontSize: 16,
     fontWeight: "bold",
   },

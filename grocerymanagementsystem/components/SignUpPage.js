@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#C2B280", // Faded brown background
+    backgroundColor: "#C2B280", 
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "#333", // Dark color for the title
+    color: "#333", 
   },
   input: {
     width: "100%",
@@ -83,11 +83,11 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 12,
     borderRadius: 8,
-    backgroundColor: "#fff", // White background for inputs
+    backgroundColor: "#fff", 
   },
   buttonContainer: {
-    width: "60%", // Adjust width of the button container
-    marginVertical: 20, // Add some space between the button and text below
+    width: "60%", 
+    marginVertical: 20, 
   },
 });
 

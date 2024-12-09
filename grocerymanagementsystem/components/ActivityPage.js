@@ -10,7 +10,7 @@ import { ActivityContext } from "../contexts/ActivityProvider";
 
 const ActivityPage = () => {
   const { activities } = useContext(ActivityContext);
-  const [filter, setFilter] = useState("All"); // Filters: All, Added, Removed, etc.
+  const [filter, setFilter] = useState("All"); 
 
   // Filter activities based on category
   const filteredActivities =
@@ -31,7 +31,7 @@ const ActivityPage = () => {
 
   return (
     <View style={styles.container}>
-      {/* Filters */}
+     
       <View style={styles.filterContainer}>
         {["All", "Added", "Removed", "Item Edited"].map((category) => (
           <TouchableOpacity
@@ -54,7 +54,7 @@ const ActivityPage = () => {
         ))}
       </View>
 
-      {/* Activity List */}
+    
       <FlatList
         data={filteredActivities}
         keyExtractor={(item) => item.id}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#C2B280", // Faded brown background
+    backgroundColor: "#C2B280", 
   },
   filterContainer: {
     flexDirection: "row",
@@ -85,13 +85,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   activeFilter: {
-    backgroundColor: "#4caf50", // Green background for active filter
+    backgroundColor: "#4caf50", 
   },
   filterText: {
-    color: "#333", // Dark text color for filter options
+    color: "#333", 
   },
   activeFilterText: {
-    color: "#fff", // White text for active filter
+    color: "#fff", 
     fontWeight: "bold",
   },
   activityItem: {
@@ -100,26 +100,26 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 8,
     marginBottom: 10,
-    backgroundColor: "#F7F0EF", // Light background for activity item
+    backgroundColor: "#F7F0EF", 
   },
   activityType: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#333", // Dark text for activity type
+    color: "#333", 
   },
   activityDetails: {
     fontSize: 14,
-    color: "#666", // Lighter gray for activity details
+    color: "#666",
     marginVertical: 4,
   },
   activityTimestamp: {
     fontSize: 12,
-    color: "#888", // Lighter gray for timestamp
+    color: "#888", 
   },
   emptyText: {
     textAlign: "center",
     fontSize: 16,
-    color: "#999", // Lighter gray for "No activities" text
+    color: "#999", 
   },
 });
 

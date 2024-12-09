@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
-import sha256 from "js-sha256"; // For hashing passwords
-import { UserContext } from "../contexts/UserContext"; // Import UserContext
+import sha256 from "js-sha256"; 
+import { UserContext } from "../contexts/UserContext"; 
 
 const SignInPage = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { users, setCurrentUser } = useContext(UserContext); // Access users and setCurrentUser
+  const { users, setCurrentUser } = useContext(UserContext); 
 
-  // Email validation regex
+  // Email validation
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleSignIn = () => {
@@ -29,11 +29,7 @@ const SignInPage = ({ navigation }) => {
     // Check if the hashed password matches
     if (users[email] === hashedPassword) {
       Alert.alert("Success", "You are signed in!");
-
-      // Set the current user in context
       setCurrentUser(email);
-
-      // Navigate to the main menu
       navigation.navigate("MainMenu");
     } else {
       Alert.alert("Invalid Credentials", "Incorrect email or password.");
@@ -80,13 +76,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#C2B280", // Faded brown background
+    backgroundColor: "#C2B280", 
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "#333", // Dark color for title
+    color: "#333",
   },
   input: {
     width: "100%",
@@ -95,17 +91,17 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 12,
     borderRadius: 8,
-    backgroundColor: "#fff", // White background for inputs
+    backgroundColor: "#fff", 
   },
   signUpText: {
     marginTop: 10,
     fontSize: 14,
-    color: "#007BFF", // Blue color for the "Sign Up" link
+    color: "#007BFF", 
     textDecorationLine: "underline",
   },
   buttonContainer: {
-    width: "60%", // Adjust width of the button container
-    marginVertical: 20, // Add some space between the button and text below
+    width: "60%", 
+    marginVertical: 20, 
   },
 });
 

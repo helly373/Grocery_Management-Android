@@ -44,52 +44,52 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#C2B280", // Faded brown background for consistency
+    backgroundColor: "#C2B280", 
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 30,
-    color: "#333", // Dark color for title
+    color: "#333", 
   },
   optionButton: {
-    backgroundColor: "black", // Black background for Checklist button
+    backgroundColor: "black", 
     padding: 16,
     marginVertical: 10,
     width: "80%",
     alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ccc", // Subtle border color
+    borderColor: "#ccc", 
     flexDirection: "row",
     justifyContent: "center",
   },
   optionText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "white", // White text for the Checklist button
-    marginLeft: 8, // Space between icon and text
+    color: "white", 
+    marginLeft: 8, 
   },
   icon: {
-    marginRight: 8, // Space between icon and text
+    marginRight: 8, 
   },
   addGroceryButton: {
-    backgroundColor: "#32CD32", // Green background for Add Grocery button
+    backgroundColor: "#32CD32", 
     padding: 16,
     marginVertical: 10,
     width: "80%",
     alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#ccc", // Subtle border color
+    borderColor: "#ccc",
     flexDirection: "row",
     justifyContent: "center",
   },
   addGroceryText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "white", // White text for Add Grocery button
-    marginLeft: 8, // Space between icon and text
+    color: "white", 
+    marginLeft: 8, 
   },
 });
 

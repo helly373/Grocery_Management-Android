@@ -2,11 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 const WelcomePage = ({ navigation }) => {
-  //const imageUri = "./assets/pet.png";
 
   return (
     <View style={styles.container}>
-      {/* Image of worm or cabbage */}
       <Image source={require("../assets/pet.png")} style={styles.image} />
 
       <Text style={styles.text}>Welcome</Text>

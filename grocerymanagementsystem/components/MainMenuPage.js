@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    backgroundColor: "#C2B280", // Faded brown background
+    backgroundColor: "#C2B280", 
   },
   optionButton: {
-    backgroundColor: "#32CD32", // Green background for option buttons
+    backgroundColor: "#32CD32", 
     paddingVertical: 16,
     paddingHorizontal: 20,
     marginVertical: 12,
@@ -75,17 +75,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "white",
-    marginLeft: 8, // Space between icon and text
+    marginLeft: 8, 
   },
   icon: {
-    marginRight: 8, // Space between icon and text
+    marginRight: 8, 
   },
   logoutButton: {
     position: "absolute",
     bottom: 20,
     right: 20,
-    backgroundColor: "#f44336", // Red background for logout button
-    padding: 12,
+    backgroundColor: "#f44336", 
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
-    marginLeft: 8, // Space between icon and text
+    marginLeft: 8, 
   },
 });
 
